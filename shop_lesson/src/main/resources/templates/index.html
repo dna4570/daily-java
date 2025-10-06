@@ -1,0 +1,47 @@
+<!-- =========================================================================
+◆【2章-1】Springの基本操作 (http://localhost:7777/shop_lesson/)
+◆【3章-2】フォワード (http://localhost:7777/shop_lesson/forward)
+◆【3章-3】リダイレクト (http://localhost:7777/shop_lesson/redirect)
+◆【6章-3】選択コントロールの動的な作成 (http://localhost:7777/shop_lesson/items/getItems)
+◆【10章-1】1種類のフィルタを利用する (http://localhost:7777/shop_lesson/filter)
+◆【10章-2】複数種類のフィルタを利用する (http://localhost:7777/shop_lesson/filter)
+==============================================================================
+
+xmlns:th="http://www.thymeleaf.org"
+  Thymeleaf専用の属性を使うための属性。
+  詳しい属性については後の章で説明。
+
+Thymeleaf
+  Springが提供しているテンプレートエンジン。
+  テンプレートエンジンとは、HTMLやJSP内に数値や文字列などの値を動的に表示する仕組み。
+  つまり、このHTMLのことを指す。
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head> 
+<body> 
+	<div>トップページ</div> 
+</body> 
+</html>
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【11章-3】レイアウト (http://localhost:7777/shop_lesson/)
+============================================================================== -->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout(~{::body/content()})}">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head> 
+<body> 
+	<div>トップページ</div> 
+</body> 
+</html> -->
+<!-- ========================================================================= -->

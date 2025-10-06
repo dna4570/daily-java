@@ -1,0 +1,26 @@
+<!-- =========================================================================
+◆【6章-5】更新 (http://localhost:7777/shop_lesson/items/update/input/1)
+==============================================================================
+
+@{コンテキストパスより後のURL} + 値
+  リンクURL式は「+」を使用することで、URLに値を追記することができる。
+  サンプルでは、URLの末尾に「item.id」と追記しているため、
+  「http://localhost:7777/shop_lesson/items/update/complete/1」というURLになる。
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<div>商品の編集</div>
+	<form method="post" th:action="@{/items/update/complete/}+${item.id}">
+		商品名:<input type="text" name="name" th:value="${item.name}" />
+		価格:<input type="number" name="price" th:value="${item.price}" />
+		<input type="submit" value="更新する" />
+	</form>
+</body>
+</html>
+<!-- ========================================================================= -->

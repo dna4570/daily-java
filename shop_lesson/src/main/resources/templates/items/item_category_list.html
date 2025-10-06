@@ -1,0 +1,28 @@
+<!-- =========================================================================
+◆【7章-1】結合したテーブルの検索(1対1) (http://localhost:7777/shop_lesson/items/findItemAndCategory)
+============================================================================== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<div>商品一覧</div>
+	<table>
+		<tr>
+			<th>商品番号</th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>カテゴリ名</th>
+		</tr>
+		<tr th:each="itemCategory: ${itemCategoryList}">
+			<td th:text="${itemCategory.id}"></td>
+			<td th:text="${itemCategory.itemName}"></td>
+			<td th:text="${itemCategory.price}"></td>
+			<td th:text="${itemCategory.categoryName}"></td>
+		</tr>
+	</table>
+</body>
+</html>
+<!-- ========================================================================= -->

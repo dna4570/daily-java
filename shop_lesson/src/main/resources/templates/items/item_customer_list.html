@@ -1,0 +1,46 @@
+<!-- =========================================================================
+◆【7章-2】結合したテーブルの検索(1対多) (http://localhost:7777/shop_lesson/items/findItemAndCustomer)
+==============================================================================
+
+th:block
+  Thymeleaf専用の属性の1つ。
+  疑似的なタグを作成する。この属性で作成されたタグは画面には出力されない。
+  例えば th:eachで繰り返し処理をする場合、今回のように繰り返す単位とタグが一致しない場合がある。
+  そのような場合にこの属性を使用する。 
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<div>商品一覧</div>
+	<table>
+		<tr>
+			<th>商品番号</th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>顧客名</th>
+			<th>購入数</th>
+		</tr>
+
+		<!-- 
+		ItemCustomer内にはエンティティCustomerのListが定義されているため、
+		ItemCustomer内のデータを表示しつつCustomer内のデータも表示するには、
+		繰り返し処理をネストする必要がある。
+		 -->
+		<th:block th:each="itemCustomer: ${itemCustomerList}">
+			<tr th:each="customer: ${itemCustomer.customerList}">
+				<td th:text="${itemCustomer.id}"></td>
+				<td th:text="${itemCustomer.name}"></td>
+				<td th:text="${itemCustomer.price}"></td>
+				<td th:text="${customer.name}"></td>
+				<td th:text="${customer.quantity}"></td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
+<!-- ========================================================================= -->

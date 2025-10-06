@@ -1,0 +1,30 @@
+<!-- =========================================================================
+◆【6章-2】条件検索(主キー検索) (http://localhost:7777/shop_lesson/items/getOne/1)
+◆【6章-4】登録 (http://localhost:7777/shop_lesson/items/create/input)
+◆【6章-5】更新 (http://localhost:7777/shop_lesson/items/update/input/1)
+============================================================================== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<div>商品詳細</div>
+	<table>
+		<tr>
+			<td>商品番号</td>
+			<td th:text="${item.id}"></td>
+		</tr>
+		<tr>
+			<td>商品名</td>
+			<td th:text="${item.name}"></td>
+		</tr>
+		<tr>
+			<td>価格</td>
+			<td th:text="${item.price}"></td>
+		</tr>
+	</table>
+</body>
+</html>
+<!-- ========================================================================= -->

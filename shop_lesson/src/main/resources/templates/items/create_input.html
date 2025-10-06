@@ -1,0 +1,31 @@
+<!-- =========================================================================
+◆【6章-4】登録 (http://localhost:7777/shop_lesson/items/create/input)
+==============================================================================
+
+th:action
+  Thymeleaf専用の属性の1つ。
+  フォームに入力された値の送信先URLを指定するための属性で、通常のHTMLのaction属性と同じ。 
+  
+@{コンテキストパスより後のURL}
+  式の1つで、「リンクURL式」という。
+  「@{コンテキストパスより後のURL}」と記述することで、コンテキストパスを含めたURLが自動作成される。 
+  サンプルでは「@{/items/create/complete}」と記述されているため、
+  「http://localhost:7777/shop_lesson/items/create/complete」というURLになる。
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<div>商品の新規登録</div>
+	<form method="post" th:action="@{/items/create/complete}">
+		商品名:<input type="text" name="name" />
+		価格:<input type="number" name="price" />
+		<input type="submit" value="登録する" />
+	</form>
+</body>
+</html>
+<!-- ========================================================================= -->

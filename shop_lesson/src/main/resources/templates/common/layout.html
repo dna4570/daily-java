@@ -1,0 +1,22 @@
+<!-- =========================================================================
+◆【11章-3】レイアウト (http://localhost:7777/shop_lesson/)
+============================================================================== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(body)">
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/layout.css}" rel="stylesheet" />
+</head>
+<body>
+	<div th:replace="~{common/header :: layout-header}"></div>
+ 
+	<div id="container">
+		<div th:replace="~{common/sidebar :: layout-sidebar}"></div>
+		<div id="main" th:replace="${body}"></div>
+	</div>
+
+	<div th:replace="~{common/footer :: layout-footer}"></div>
+</body>
+</html>
+<!-- ========================================================================= -->

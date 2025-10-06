@@ -1,0 +1,40 @@
+<!-- =========================================================================
+◆【5章-1】リクエストスコープ (http://localhost:7777/shop_lesson/login)
+============================================================================== -->
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8" />
+</head>
+<body>
+	<div><span th:text="${userName}"></span>さんのマイページ</div>
+</body>
+</html> 
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【5章-2】セッションスコープ (http://localhost:7777/shop_lesson/login)
+◆【8章-1】入力チェック (http://localhost:7777/shop_lesson/login)
+◆【9章-1】エラーメッセージの変更 (http://localhost:7777/shop_lesson/login)
+◆【9章-2】メッセージ中への文字列の埋め込み (http://localhost:7777/shop_lesson/login)
+◆【9章-3】独自入力チェック (http://localhost:7777/shop_lesson/login)
+◆【10章-3】ログインチェック (http://localhost:7777/shop_lesson/login)
+============================================================================== -->
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8" />
+</head>
+<body>
+    <div><span th:text="${session.userName}"></span>さんのマイページ</div>
+
+    <form action="/shop_lesson/doLogout" >
+		<input type="submit" value="ログアウト" />
+	</form>
+</body>
+</html>-->
+<!-- ========================================================================= -->

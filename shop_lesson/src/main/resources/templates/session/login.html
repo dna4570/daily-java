@@ -1,0 +1,149 @@
+<!-- =========================================================================
+◆【4章-1】パラメータの取得 (http://localhost:7777/shop_lesson/login)
+============================================================================== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head>
+<body>
+	<div>ログイン</div>
+
+	<form method="get" action="/shop_lesson/doGetLogin">
+		ユーザID:<input type="number" name="userId" />
+		パスワード:<input type="password" name="password" />
+		<input type="submit" value="GETによるログイン" />
+	</form>
+
+	<form method="post" action="/shop_lesson/doPostLogin">
+		ユーザID:<input type="number" name="userId" />
+		パスワード:<input type="password" name="password" />
+		<input type="submit" value="POSTによるログイン" />
+	</form>
+</body>
+</html> 
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【4章-2】Formクラスの利用 (http://localhost:7777/shop_lesson/login)
+◆【5章-1】リクエストスコープ (http://localhost:7777/shop_lesson/login)
+◆【5章-2】セッションスコープ (http://localhost:7777/shop_lesson/login)
+============================================================================== -->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head>
+<body>
+	<div>ログイン</div>
+
+	<form method="post" action="/shop_lesson/doLogin">
+		ユーザID:<input type="number" name="userId" />
+		パスワード:<input type="password" name="password" />
+		<input type="submit" value="ログイン" />
+	</form>
+</body>
+</html> -->
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【8章-1】入力チェック (http://localhost:7777/shop_lesson/login)
+◆【9章-1】エラーメッセージの変更 (http://localhost:7777/shop_lesson/login)
+◆【9章-2】メッセージ中への文字列の埋め込み (http://localhost:7777/shop_lesson/login)
+==============================================================================
+
+th:object
+  Thymeleaf専用の属性の1つ。
+  スコープに格納されているオブジェクトを取得する。
+  後述の選択変数式とセットで使用される。
+
+*{フィールド名}
+  式の1つで、「選択変数式」という。
+  予めth:objectでオブジェクトを取得しておくと、「*{フィールド名}」と記述することで、
+  取得したオブジェクトのフィールドの値を取得することができる。
+  今までのように、変数式を利用して「${スコープ変数名.フィールド名}」と記述しても問題はないが、
+  スコープ変数名を記述しなくてもいいため、こちらの方が効率が良い。
+
+
+th:field
+  Thymeleaf専用の属性の1つ。
+  以下の機能を提供する。
+
+  ・id属性に属性値に指定した名前を設定
+  ・name属性に属性値に指定した名前を設定
+  ・value属性に属性値を設定
+
+  サンプルの場合、「<input type="text" id="userId" name="userId" value="4567" />」と出力される。
+
+
+th:errors
+  入力チェックに該当した場合、この属性を記述したタグ内にエラーメッセージを表示する。
+  その際、属性値に記述されたフィールドに対応するエラーメッセージが表示される。
+  エラーメッセージの詳細についてはP125参照。
+
+-->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head>
+<body>
+	<div>ログイン</div>
+
+	<form method="post" th:action="@{/doLogin}" th:object="${loginForm}"> 
+		ユーザID:<input type="text" th:field="*{userId}" /> 
+		<span th:errors="*{userId}"></span><br />
+
+		パスワード:<input type="password" th:field="*{password}" /> 
+		<span th:errors="*{password}"></span><br /> 
+
+		<input type="submit" value="ログイン" /> 
+	</form> 
+</body>
+</html> -->
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【9章-3】独自入力チェック (http://localhost:7777/shop_lesson/login)
+◆【10章-3】ログインチェック (http://localhost:7777/shop_lesson/login)
+==============================================================================
+
+#fields.detailedErrors()
+  入力チェック時のエラーの情報を一括で取得する。
+  その際、エラーの情報はリストに格納されて取得される。
+
+-->
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head>
+<body th:object="${loginForm}"> 
+	<div>ログイン</div>
+	
+	<ul> 
+		<li th:each="error:${#fields.detailedErrors()}"><span th:text="${error.message}"></span></li> 
+	</ul> 
+
+	<form method="post" th:action="@{/doLogin}"> 
+		ユーザID:<input type="text" th:field="*{userId}" /> 
+		<br />
+
+		パスワード:<input type="password" th:field="*{password}" /> 
+		<br /> 
+
+		<input type="submit" value="ログイン" /> 
+	</form> 
+</body>
+</html>-->
+<!-- ========================================================================= -->

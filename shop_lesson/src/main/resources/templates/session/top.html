@@ -1,0 +1,76 @@
+<!-- =========================================================================
+◆【5章-1】リクエストスコープ (http://localhost:7777/shop_lesson/login)
+==============================================================================
+
+${スコープ変数名}
+  Thymeleafが提供している機能で、「式」という。
+  式にはいくつか種類があり、今回のものは「変数式」という。
+  変数式はスコープに格納された値を取得する際に使用する。
+
+
+th:text
+  Thymeleaf専用の属性の1つ。
+  この属性が記述されたタグ内に属性値を出力する。
+  サンプルの場合、属性値が「${userName}」のため、「TIS一郎」が取得される。
+  そして、「TIS一郎」がタグ内に出力されるため、「<span>TIS一郎</span>」という結果になる。
+
+  また、th:textを使用しなくても「［［ ］］(半角だとエラーになるため全角を使用)」を利用して値を出力することも可能。
+  サンプルの場合、「<span>[[${userName}]]</span>」と記述することで、
+  th:text使用時と同様に「<span>TIS一郎</span>」と出力される。
+
+
+th:value
+  Thymeleaf専用の属性の1つ。
+  通常のHTMLのvalue属性と同じ。
+  通常のvalue属性と異なり、属性値に式を記述することができるので、動的に属性値を指定できる。
+  因みに、inputタグのtype属性が「hidden」の場合、value属性の属性値が隠しデータとして送られる。
+
+-->
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8" />
+</head>
+<body>
+	<div>ようこそ<span th:text="${userName}"></span>さん</div>
+	<form action="/shop_lesson/myPage" >
+		<input type="submit" value="マイページへ" />
+		<input type="hidden" name="userName" th:value="${userName}" /> 
+	</form>
+</body>
+</html> 
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【5章-2】セッションスコープ (http://localhost:7777/shop_lesson/login)
+◆【8章-1】入力チェック (http://localhost:7777/shop_lesson/login)
+◆【9章-1】エラーメッセージの変更 (http://localhost:7777/shop_lesson/login)
+◆【9章-2】メッセージ中への文字列の埋め込み (http://localhost:7777/shop_lesson/login)
+◆【9章-3】独自入力チェック (http://localhost:7777/shop_lesson/login)
+◆【10章-3】ログインチェック (http://localhost:7777/shop_lesson/login)
+==============================================================================
+
+session.スコープ変数名
+  HttpSessionクラスの暗黙オブジェクト。
+  暗黙オブジェクトとは、プログラマー自身が作成しなくても使用できるオブジェクトのこと。
+  HttpSessionクラスのオブジェクトが「session」という変数に予め代入されているので、
+  「session.スコープ変数名」と記述することで、セッションスコープ内の値を取得することができる。
+
+-->
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8" />
+</head>
+<body>
+	<div>ようこそ<span th:text="${session.userName}"></span>さん</div>
+	<form action="/shop_lesson/myPage" >
+		<input type="submit" value="マイページへ" />
+	</form>
+</body>
+</html>-->
+<!-- ========================================================================= -->

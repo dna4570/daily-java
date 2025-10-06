@@ -1,0 +1,41 @@
+<!-- =========================================================================
+◆【6章-3】選択コントロールの動的な作成 (http://localhost:7777/shop_lesson/items/getItems)
+==============================================================================
+
+検索結果を選択コントロールに反映させる方法
+  検索結果を選択コントロールに反映させるには、
+  選択コントロールの項目部分を繰り返し処理で作成する必要がある。
+
+  例えばドロップダウンリストの場合、selectタグ内のoptionタグが項目部分になる。
+  そのため、th:eachで検索結果のレコード数分optionタグを作成することにより、
+  検索結果に応じたドロップダウンリストを作成することができる。 
+
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<form action="/shop_lesson/items/showItems" >
+		<h3>ドロップダウンリスト</h3>
+		<select name="dropdown">
+			<option th:each="item: ${items}" th:value="${item.id}">[[${item.name}]]</option>
+		</select>
+
+		<h3>チェックボックス</h3>
+		<div th:each="item: ${items}">
+	 		<label><input type="checkbox" th:value="${item.id}" name="checkbox"/>[[${item.name}]]</label>
+		</div>
+
+		<h3>ラジオボタン</h3>
+		<div th:each="item :${items}">
+	  		<label><input type="radio" th:value="${item.id}" name="radio"/>[[${item.name}]]</label>
+		</div><br />
+
+		<input type="submit" value="送信" />
+	</form>
+</body>
+</html>
+<!-- ========================================================================= -->

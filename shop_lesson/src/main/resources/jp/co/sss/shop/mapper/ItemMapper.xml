@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.sss.shop.mapper.ItemMapper">
+	<select id="findAll" resultType="jp.co.sss.shop.entity.Item">
+		SELECT * FROM items
+	</select>
+
+ 	<select id="getOne" resultType="jp.co.sss.shop.entity.Item">
+		SELECT * FROM items WHERE id = #{id}
+	</select>
+
+	<select id="getItemInfo" resultType="jp.co.sss.shop.entity.Item">
+		SELECT id, name FROM items
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="jp.co.sss.shop.entity.Item">
+		INSERT INTO items (name, price) VALUES (#{name}, #{price})
+	</insert>
+
+	<update id="update" parameterType="jp.co.sss.shop.entity.Item">
+		UPDATE items SET name = #{name}, price = #{price} WHERE id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM items WHERE id = #{id}
+	</delete>
+
+	<select id="findAllItemCategory" resultType="jp.co.sss.shop.entity.ItemCategory">
+		SELECT
+		 items.id AS id,
+		 items.name AS item_name,
+		 items.price AS price,
+		 categories.name AS category_name
+		FROM
+		 items
+		INNER JOIN
+		 categories
+		ON
+		 items.category_id = categories.id
+		ORDER BY
+		 id
+	</select>
+
+	<resultMap id="itemCustomerResult" type="jp.co.sss.shop.entity.ItemCustomer" >
+		<id column="id" property="id" />
+		<result column="item_name" property="name" />
+		<result column="price" property="price" />
+		<collection property="customerList" ofType="jp.co.sss.shop.entity.Customer">
+			<result column="customer_name" property="name" />
+			<result column="quantity" property="quantity" />
+		</collection>
+	</resultMap>
+	<select id="findAllItemCustomer" resultMap="itemCustomerResult">
+		SELECT
+		 items.id AS id,
+		 items.name AS item_name,
+		 items.price AS price,
+		 customer.name AS customer_name,
+		 customer.quantity AS quantity
+		FROM
+		 items
+		INNER JOIN
+		 customer
+		ON
+		 items.id = customer.item_id
+		ORDER BY
+		 id
+	</select>
+</mapper>

@@ -1,0 +1,141 @@
+<!-- =========================================================================
+◆【11章-1】基本的な属性、制御系属性 (http://localhost:7777/shop_lesson/thymeleaf)
+============================================================================== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Insert title here</title> 
+</head> 
+<body>
+	<!-- 
+	th:text
+	   この属性が記述されたタグ内に属性値を出力する。
+	   また、出力する際、自動的にエスケープ処理(特別な意味や機能を持つ文字・記号を無効化すること)が行われる。
+	   エスケープ処理をしたくない場合は「th:utext」を使用する。
+	 -->
+	<div>
+		<div>===================== th:text =====================</div>
+		<div th:text="${message}"></div>
+		<div th:utext="${message}"></div>
+	</div>
+
+
+	<!--
+	th:attr
+	   HTMLの属性を変更することができる。
+	   属性値は「変更対象の属性名=変更後の属性値」という形式で記述する。
+	   複数の属性を変更したい場合は、「変更対象の属性名1=変更後の属性値1, 変更対象の属性名2=変更後の属性値2, …」というように、
+	   カンマ区切りで記述する。
+	   この属性単体では使用せず、if等と組み合わせて「一定の条件を満たした際に属性を変更する」という使い方をする。
+	 -->
+	<div>
+		<div>===================== th:attr =====================</div>
+		<a href="@{/dammy}" th:attr="href=@{/login}" >href属性の属性値を/dammy→/loginに変更</a>
+	</div><br />
+
+
+	<!-- 
+	th:attrprepend、th:attrappend
+	   属性値を、指定した属性の先頭(末尾)に連結する。
+	   th:attrprependは先頭に、th:attrappendは末尾に連結する。
+	   class属性の属性値に連結する「th:classappend」と、style属性の属性値に連結する「th:styleappend」という属性もある。
+	 -->
+	<div>
+		<div>============== th:attrprepend、th:attrappend ==============</div>
+		<div class="_area_" th:attrprepend="class=${num}" >th:attrprependは先頭に属性値を連結</div>
+		<div class="_area_" th:attrappend="class=${num}" >th:attrappendは末尾に属性値を連結</div>
+	</div><br />
+
+
+	<!-- 
+	th:checked、th:selected
+	   通常のHTMLのchecked、selected属性と同じ。
+	   属性値がtrueであれば入力フォームがチェックされた状態になる。
+	 -->
+	<div>
+		<div>================ th:checked、th:selected ================</div>
+		<div>
+			<input type="radio" name="gender" value="1" th:checked="${gender == 1}" />男性 
+			<input type="radio" name="gender" value="2" th:checked="${gender == 2}" />女性 
+		</div>
+		<select name="dept_id ">
+			<option value="1" th:selected="${category_id == 1}">営業部</option>
+			<option value="2" th:selected="${category_id == 2}">経理部</option>
+			<option value="3" th:selected="${category_id == 3}">総務部</option>
+		</select>
+	</div><br />
+
+
+	<!-- 
+	th:each
+	   この属性が記述されたタグを繰り返し出力する。
+	   また、th:eachには「ステータス変数」というものがあり、これを利用することで繰り返し処理中の状態を取得できる。
+	   「th:each="変数名, ステータス変数名 : 配列またはリスト"」と記述することでステータス変数を利用できる状態になり、
+	   「ステータス変数名.フィールド名」と記述することでステータス変数を利用することができます。
+	   フィールドは複数あり、詳細はテキストを参照すること。
+	 -->
+	<div>
+		<div>===================== th:each =====================</div>
+		<div th:each="num, st:${numArray}" >
+			<div>現在の繰り返し数(0始まり)：[[${st.index}]]</div>
+			<div>現在の繰り返し数(1始まり)：[[${st.count}]]</div>
+			<div>要素数：[[${st.size}]]</div>
+			<div>現在の繰り返し中の値：[[${st.current}]]</div>
+			<div>現在の繰り返し数が偶数か(1始まり)：[[${st.even}]]</div>
+			<div>現在の繰り返し数が奇数か(1始まり)：[[${st.odd}]]</div>
+			<div>現在の繰り返し処理が最初か：[[${st.first}]]</div>
+			<div>現在の繰り返し処理が最後か：[[${st.last}]]</div>
+			<br />
+		</div>
+	</div>
+
+
+	<!-- 
+	th:if
+	   属性値の条件を満たす場合、この属性が記述されたタグを出力する。
+	   基本的には属性値にはtrue/falseを指定するが、以下の値もtrueとして判断される。
+
+	   ・0以外の数値
+	   ・0以外の文字
+	   ・「false」、「off」、「no」以外の文字列 
+	   ・真偽値、数値、文字、文字列以外の場合
+
+	   また、th:unlessを使用することで、if esle文のように、条件を満たさない場合にタグを出力することもできる。
+	 -->
+	<div>
+		<div>====================== th:if ======================</div>
+		<div th:if="${gender == 1}">genderが1なら出力</div>
+		<div th:if="${gender == 2}">genderが2なら出力</div>
+		<div th:unless="${gender == 1}">genderが1でなければ出力</div>
+	</div><br />
+
+
+	<!-- 
+	th:switch
+	   switch文。
+	   th:caseとセットで使用し、th:switchの属性値がth:caseの属性値と同じなら、th:caseが記述されたタグを出力する。
+	   いずれの条件にも一致しない場合は、th:case="*"と記述する。
+	 -->
+	<div>
+		<div>==================== th:switch ====================</div>
+		<div th:switch="${deptId}">
+			<div th:case="1">開発部</div>
+			<div th:case="2">営業部</div>
+			<div th:case="*">部署に所属していません</div>
+		</div>
+	</div><br />
+
+
+	<!-- 
+	リンクURL式
+	   リンクURL式は、URLの末尾に「(パラメータ名=パラメータ, …)」を記述することでURLパラメータを送ることができる。
+	 -->
+	<div>
+		<div>=================== リンクURL式 ===================</div>
+		<a th:href="@{/items(id1=${id1},id1=${id2})}">URLパラメータを送る</a>
+	</div><br />
+
+</body> 
+</html>
+<!-- ========================================================================= -->

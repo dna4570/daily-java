@@ -1,0 +1,122 @@
+<!-- =========================================================================
+◆【6章-1】全件検索 (http://localhost:7777/shop_lesson/items/findAll)
+◆【6章-6】削除 (http://localhost:7777/shop_lesson/items/delete/input)
+==============================================================================
+
+th:each
+  Thymeleaf専用の属性の1つ。
+  この属性が記述されたタグを繰り返し出力する。
+  出力する回数は、属性値に記述されているリスト・配列の要素数によって変わる。
+  処理の動きはJavaの拡張for文と同じ。  
+
+スコープ内のJavaBeansのフィールドの値を取得する場合
+  「${スコープ変数名.フィールド名}」と記述することで、
+  スコープ内のJavaBeansのフィールドの値を取得することができる。
+  スコープ変数「item」には、エンティティ「Item」が格納されている。
+  そのため、「item.フィールド名」と記述することで、
+  エンティティ「Item」のフィールドの値を取得することができる。
+
+-->
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>	
+</head>
+<body>
+	<div>商品一覧</div>	
+	<table>
+		<tr>
+			<th>商品番号</th>
+			<th>商品名</th>
+			<th>価格</th>
+		</tr>
+		<tr th:each="item: ${items}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+		</tr>
+	</table>
+</body>
+</html> 
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【9章-4】通常のメッセージの出力 (http://localhost:7777/shop_lesson/items/findAll)
+==============================================================================
+
+#{キー}
+  式の1つで、「メッセージ式」という。
+  メッセージリソース内のキーを記述することで、それに対応する値を取得することができる。
+
+-->
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>	
+</head>
+<body>
+	<div>商品一覧</div>	
+	
+	<h2>本日のセール品</h2> 
+	<p th:text="#{message.sale}" ></p>
+	
+	<table>
+		<tr>
+			<th>商品番号</th>
+			<th>商品名</th>
+			<th>価格</th>
+		</tr>
+		<tr th:each="item: ${items}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+		</tr>
+	</table>
+</body>
+</html>-->
+<!-- ========================================================================= -->
+
+
+
+<!-- =========================================================================
+◆【11章-2】CSSとJavaScriptの利用 (http://localhost:7777/shop_lesson/items/findAll)
+==============================================================================
+
+CSSとJavaScriptを利用するには、「src/main/resources/static」フォルダ配下にファイルを配置し、
+それをHTML側で読み込む。
+読み込む際は、通常のHTML同様linkタグ及びscriptを使用する。
+
+-->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<script th:src="@{/js/shop.js}" type="text/javascript"></script>
+</head>
+<body>
+	<div>商品一覧</div>	
+	
+	<h2>本日のセール品</h2> 
+	<p th:text="#{message.sale}" ></p>
+	
+	<table class="item">
+		<tr>
+			<th>商品番号</th>
+			<th>商品名</th>
+			<th>価格</th>
+		</tr>
+		<tr th:each="item: ${items}">
+			<td th:text="${item.id}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+		</tr>
+	</table>
+</body>
+</html> -->
+<!-- ========================================================================= -->
